@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+climatelens/backend/node_modules/
+climatelens/frontend/node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+*.env
+
+# Build output
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
+.vscode/
+.idea/
