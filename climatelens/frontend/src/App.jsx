@@ -3,6 +3,9 @@ import WeatherCard from "./components/WeatherCard";
 import AirQualityCard from "./components/AirQualityCard";
 import AISummary from "./components/AISummary";
 
+// 🌍 Base URL for your deployed backend
+const API_BASE = "https://climatelens-backend.onrender.com";
+
 function App() {
   const [city, setCity] = useState("London");
   const [weather, setWeather] = useState(null);
@@ -28,14 +31,14 @@ function App() {
     }
 
     // Fetch weather
-    fetch(`http://localhost:5000/api/weather?city=${city}`)
+    fetch(`${API_BASE}/api/weather?city=${city}`)
       .then((res) => res.json())
       .then((data) => {
         setWeather(data);
         if (data.coord) {
           // Fetch AQI using coordinates
           fetch(
-            `http://localhost:5000/api/airquality?lat=${data.coord.lat}&lon=${data.coord.lon}`
+            `${API_BASE}/api/airquality?lat=${data.coord.lat}&lon=${data.coord.lon}`
           )
             .then((res) => res.json())
             .then((aqi) => setAirQuality(aqi));
@@ -51,7 +54,7 @@ function App() {
       return;
     }
 
-    const response = await fetch("http://localhost:5000/api/ai-summary", {
+    const response = await fetch(`${API_BASE}/api/ai-summary`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
